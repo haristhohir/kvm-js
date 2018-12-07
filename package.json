@@ -1,0 +1,19 @@
+{
+  "name": "kvm-json",
+  "version": "0.0.1",
+  "description": "A JSON compression technique by splitting JSON object into Key, Value and Model",
+  "author": "Muhammad Harisuddin Thohir <me@harisuddin.com>",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [
+    "JSON",
+    "Compression",
+    "KVM",
+    "Key",
+    "Value",
+    "Model"
+  ],
+  "license": "ISC"
+}
