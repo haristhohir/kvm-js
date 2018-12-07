@@ -1,6 +1,6 @@
 # kvm-js
 
-A JSON compression technique by splitting JSON object into Key, Value and Model
+A JSON compression technique by splitting JSON object into Key, Value and Model.
 
 `npm i kvm-json`
 
