@@ -1,3 +1,4 @@
+var zlib = require('zlib');
 var kvm = require('./'),
     compress = kvm.compress,
     decompress = kvm.decompress
@@ -40,10 +41,12 @@ data = [{
     }]
 }]
 
-printJSON(data, false, true);
-compressed = compress(data);
-printJSON(compressed, true, true);
-printJSON(decompress(compressed), false, true);
+
+printJSON(data, false, true)
+compressed = compress(data)
+printJSON(compressed, false, true)
+// printJSON(compressed, true, true)
+printJSON(decompress(compressed), false, true)
 
 function print(data) {
     console.log(data)
@@ -64,7 +67,12 @@ function printJSON(data, beutify = false, showSize = false) {
 }
 
 function sizeOf(string) {
-    return string.length
+    try {
+        return string.length
+    } catch {
+        return 0
+    }
+
 }
 
 function jsonSize(data) {

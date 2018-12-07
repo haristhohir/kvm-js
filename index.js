@@ -1,3 +1,5 @@
+var zlib = require('zlib');
+
 /**
  * @author Muhammad Harisuddin Thohir <me@harisuddin.com>
  * 
@@ -29,13 +31,23 @@ function compress(data, force = false) {
      * if compressed size smaller than origin size 
      * or force to compress then will return compressed JSON object
      * if not will return origin JSON object
+     * and adition compression using GZIP
      */
     if (jsonSize(compressed) < jsonSize(data) || force) {
-        return compressed
+        return gzip(compressed)
     } else {
-        return data
+        return gzip(data)
     }
 }
+
+/**
+ * do compression by collect all key into key list, 
+ * collect all value into value list
+ * generate JSON model from minified origin JSON object
+ * 
+ * @param {any} data - origin JSON object
+ * @returns {any} result - compressed to KVM
+ */
 
 function forceCompress(data) {
     var key = [],
@@ -62,6 +74,7 @@ function forceCompress(data) {
  */
 
 function decompress(data) {
+    data = ungzip(data)
     let map = Object.keys(data)
     if (map[0] === 'k' && map[1] === 'v' && map[2] === 'm') {
         return build(data['m'], data['k'], data['v'])
@@ -213,6 +226,55 @@ function build(data, key, value) {
     }
 
     return model
+}
+
+/**
+ * GZIP compression
+ * @param {any} json 
+ * @returns {string} encoded - Base64
+ */
+
+
+function gzip(json) {
+    jsonString = JSON.stringify(json)
+    try {
+        return encode(zlib.gzipSync(jsonString))
+    } catch (e) {
+        return json
+    }
+}
+
+/**
+ * UNGZIP decompression
+ * @param {string} encoded - Base64
+ * @returns {any} json - decompressed JSON object
+ */
+
+function ungzip(encoded) {
+    decoded = decode(encoded)
+    try {
+        return JSON.parse(zlib.unzipSync(decoded).toString())
+    } catch (e) {
+        return encoded
+    }
+}
+
+/**
+ * @param {string} string 
+ * @returns {string} base64
+ */
+
+function encode(string) {
+    return Buffer.from(string).toString('base64')
+}
+
+/**
+ * @param {string} encoded - Base64
+ * @returns {buffer} buffer
+ */
+
+function decode(encoded) {
+    return Buffer.from(encoded, 'base64')
 }
 
 function isObject(obj) {
