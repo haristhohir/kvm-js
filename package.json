@@ -17,7 +17,8 @@
     "KVM",
     "Key",
     "Value",
-    "Model"
+    "Model",
+    "Data"
   ],
   "license": "ISC"
 }

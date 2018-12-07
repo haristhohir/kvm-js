@@ -50,6 +50,7 @@ function print(data) {
 }
 
 function printJSON(data, beutify = false, showSize = false) {
+
     if (beutify) {
         print(JSON.stringify(data, null, 2))
     } else {
