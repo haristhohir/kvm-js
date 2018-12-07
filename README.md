@@ -7,7 +7,7 @@ A JSON compression technique by splitting JSON object into Key, Value and Model
 ## Features
 
 - Compress JSON into KVM model structure
-- Decompress KVM structute into origin JSON object
+- Decompress KVM structure into origin JSON object
 
 ## Usage
 
@@ -19,7 +19,7 @@ var kvm = require("kvm-json"),
   decompress = kvm.decompress;
 ```
 
-This is safe for JSON with comments:
+Compression usage:
 
 ```js
 data = [
