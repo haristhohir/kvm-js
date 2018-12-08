@@ -80,8 +80,8 @@ console.log(compressed);
 {
   "k": [ "class", "rider", "name", "age", "bike_number", "world_champion" ],
   "v": [ "motogp", "Valentino Rossi", 39, 46, 7, "Marc Márquez", 25, 93, 5, 
-  "Jorge Lorenzo", 31, 99, 3, "moto2", "Francesco Bagnaia", 21, 63, 1, 
-  "Franco Morbidelli", 24, "Pol Espargaró", 27, 44 ],
+         "Jorge Lorenzo", 31, 99, 3, "moto2", "Francesco Bagnaia", 21, 63, 1, 
+         "Franco Morbidelli", 24, "Pol Espargaró", 27, 44 ],
   "m": [
     {
       "0": 0,
@@ -134,6 +134,12 @@ console.log(compressed);
  
 Extra compression using gzip result:
 
-"H4sIAAAAAAAAE1XOwWqEMBAG4FeROc/BxKirx0J7KBVKD70UWaIb3LCasXG3hV32YfoMfYR9sY7RQksgCfkm/8wFDlC+QdvraQIEb3fG8+n0YPjQ3bw39mC27jQ0gT7J97ttu9fDaMlBjfAxJwx0pG5kf9W9cUfrKHqhabKASYEqwxyh0r6NqtuXfz+ZM6BMsUgwRXgk35noibxxZ+J6gUWBCYZIyYkPXrvWTC1Fd7pz2mr+KzBLUKxGUUW+4dH7nvtJhfBMfXQ/jdp32t+++S1HpXjUgUe9QAxljCDCXULJMQmUEkFByW1TKNUVg6RBsiB5kM0qRRARBxIimJDXemaOF8nffLUUp0txthTna5LYLFosmv5XGS/DiaBS/mrN6wf+PL6XvAEAAA=="
+"H4sIAAAAAAAAE1XOwWqEMBAG4FeROc/BxKirx0J7KBVKD70UWaIb3LCasXG3hV32YfoMfYR9sY7
+RQksgCfkm/8wFDlC+QdvraQIEb3fG8+n0YPjQ3bw39mC27jQ0gT7J97ttu9fDaMlBjfAxJwx0pG5
+kf9W9cUfrKHqhabKASYEqwxyh0r6NqtuXfz+ZM6BMsUgwRXgk35noibxxZ+J6gUWBCYZIyYkPXrv
+WTC1Fd7pz2mr+KzBLUKxGUUW+4dH7nvtJhfBMfXQ/jdp32t+++S1HpXjUgUe9QAxljCDCXULJMQm
+UEkFByW1TKNUVg6RBsiB5kM0qRRARBxIimJDXemaOF8nffLUUp0txthTna5LYLFosmv5XGS/DiaB
+S/mrN6wf+PL6XvAEAAA=="
+*
 */
 ```
