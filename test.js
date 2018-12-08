@@ -1,4 +1,3 @@
-var zlib = require('zlib')
 var kvm = require('./'),
     compress = kvm.compress,
     decompress = kvm.decompress
@@ -45,7 +44,6 @@ data = [{
 printJSON(data, false, true)
 compressed = compress(data)
 printJSON(compressed, false, true)
-// printJSON(compressed, true, true)
 printJSON(decompress(compressed), false, true)
 
 function print(data) {
