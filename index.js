@@ -1,4 +1,4 @@
-var zlib = require("zlib");
+var zlib = require("zlib")
 
 /**
  * @author Muhammad Harisuddin Thohir <me@harisuddin.com>
@@ -26,7 +26,7 @@ var zlib = require("zlib");
  */
 
 function compress(data, force = false) {
-  compressed = forceCompress(data);
+  compressed = forceCompress(data)
   /**
    * if compressed size smaller than origin size
    * or force to compress then will return compressed JSON object
@@ -34,9 +34,9 @@ function compress(data, force = false) {
    * and adition compression using GZIP
    */
   if (jsonSize(compressed) < jsonSize(data) || force) {
-    return gzip(compressed);
+    return gzip(compressed)
   } else {
-    return gzip(data);
+    return gzip(data)
   }
 }
 
@@ -52,17 +52,17 @@ function compress(data, force = false) {
 function forceCompress(data) {
   var key = [],
     value = [],
-    model = {};
+    model = {}
 
-  key = getKeys(data);
-  value = getValues(data);
-  model = buildModel(data, key, value);
+  key = getKeys(data)
+  value = getValues(data)
+  model = buildModel(data, key, value)
 
   return {
     k: key,
     v: value,
     m: model
-  };
+  }
 }
 
 /**
@@ -74,12 +74,12 @@ function forceCompress(data) {
  */
 
 function decompress(data) {
-  data = ungzip(data);
-  let map = Object.keys(data);
+  data = ungzip(data)
+  let map = Object.keys(data)
   if (map[0] === "k" && map[1] === "v" && map[2] === "m") {
-    return build(data["m"], data["k"], data["v"]);
+    return build(data["m"], data["k"], data["v"])
   } else {
-    return data;
+    return data
   }
 }
 
@@ -92,25 +92,25 @@ function decompress(data) {
 
 function getKeys(data) {
   if (Array.isArray(data)) {
-    let keys = [];
-    data.forEach(function(item, index, arr) {
+    let keys = []
+    data.forEach(function (item, index, arr) {
       if (isObject(item)) {
-        keys.push(...getKeys(item));
+        keys.push(...getKeys(item))
       }
-    });
-    return [...new Set(keys)];
+    })
+    return [...new Set(keys)]
   } else if (isObject(data)) {
-    let keys = Object.keys(data);
-    var result = [];
-    keys.forEach(function(item, index, arr) {
+    let keys = Object.keys(data)
+    var result = []
+    keys.forEach(function (item, index, arr) {
       if (isObject(data[item]) && data[item] != null) {
-        result.push(item);
-        result.push(...getKeys(data[item]));
+        result.push(item)
+        result.push(...getKeys(data[item]))
       } else {
-        result.push(item);
+        result.push(item)
       }
-    });
-    return [...new Set(result)];
+    })
+    return [...new Set(result)]
   }
 }
 
@@ -123,26 +123,26 @@ function getKeys(data) {
 
 function getValues(data) {
   if (Array.isArray(data)) {
-    let values = [];
-    data.forEach(function(item, index, arr) {
+    let values = []
+    data.forEach(function (item, index, arr) {
       if (isObject(item)) {
-        values.push(...getValues(item));
+        values.push(...getValues(item))
       } else {
-        values.push(item);
+        values.push(item)
       }
-    });
-    return [...new Set(values)];
+    })
+    return [...new Set(values)]
   } else if (isObject(data)) {
-    let keys = Object.keys(data);
-    var result = [];
-    keys.forEach(function(item, index, arr) {
+    let keys = Object.keys(data)
+    var result = []
+    keys.forEach(function (item, index, arr) {
       if (isObject(data[item]) && data[item] != null) {
-        result.push(...getValues(data[item]));
+        result.push(...getValues(data[item]))
       } else {
-        result.push(data[item]);
+        result.push(data[item])
       }
-    });
-    return [...new Set(result)];
+    })
+    return [...new Set(result)]
   }
 }
 
@@ -156,32 +156,32 @@ function getValues(data) {
  */
 
 function buildModel(data, key, value) {
-  var model = {};
+  var model = {}
   if (Array.isArray(data)) {
-    var modelArr = [];
-    data.forEach(function(item, index, arr) {
+    var modelArr = []
+    data.forEach(function (item, index, arr) {
       if (isObject(item)) {
-        modelArr.push(buildModel(item, key, value));
+        modelArr.push(buildModel(item, key, value))
       } else {
-        let indexValue = value.indexOf(item);
-        modelArr.push(indexValue);
+        let indexValue = value.indexOf(item)
+        modelArr.push(indexValue)
       }
-    });
-    model = modelArr;
+    })
+    model = modelArr
   } else if (isObject(data)) {
-    let keys = Object.keys(data);
-    keys.forEach(function(item, index, arr) {
-      let indexKey = key.indexOf(item);
+    let keys = Object.keys(data)
+    keys.forEach(function (item, index, arr) {
+      let indexKey = key.indexOf(item)
       if (isObject(data[item]) && data[item] != null) {
-        model[indexKey] = buildModel(data[item], key, value);
+        model[indexKey] = buildModel(data[item], key, value)
       } else {
-        let indexValue = value.indexOf(data[item]);
-        model[indexKey] = indexValue;
+        let indexValue = value.indexOf(data[item])
+        model[indexKey] = indexValue
       }
-    });
+    })
   }
 
-  return model;
+  return model
 }
 
 /**
@@ -195,32 +195,32 @@ function buildModel(data, key, value) {
  */
 
 function build(data, key, value) {
-  var model = {};
+  var model = {}
   if (Array.isArray(data)) {
-    var modelArr = [];
-    data.forEach(function(item, index, arr) {
+    var modelArr = []
+    data.forEach(function (item, index, arr) {
       if (isObject(item)) {
-        modelArr.push(build(item, key, value));
+        modelArr.push(build(item, key, value))
       } else {
-        let indexValue = value[item];
-        modelArr.push(indexValue);
+        let indexValue = value[item]
+        modelArr.push(indexValue)
       }
-    });
-    model = modelArr;
+    })
+    model = modelArr
   } else if (isObject(data)) {
-    let keys = Object.keys(data);
-    keys.forEach(function(item, index, arr) {
-      let indexKey = key[item];
+    let keys = Object.keys(data)
+    keys.forEach(function (item, index, arr) {
+      let indexKey = key[item]
       if (isObject(data[item])) {
-        model[indexKey] = build(data[item], key, value);
+        model[indexKey] = build(data[item], key, value)
       } else {
-        let indexValue = value[data[item]];
-        model[indexKey] = indexValue;
+        let indexValue = value[data[item]]
+        model[indexKey] = indexValue
       }
-    });
+    })
   }
 
-  return model;
+  return model
 }
 
 /**
@@ -230,11 +230,11 @@ function build(data, key, value) {
  */
 
 function gzip(json) {
-  jsonString = JSON.stringify(json);
+  jsonString = JSON.stringify(json)
   try {
-    return encode(zlib.gzipSync(jsonString));
+    return encode(zlib.gzipSync(jsonString))
   } catch (e) {
-    return json;
+    return json
   }
 }
 
@@ -245,11 +245,11 @@ function gzip(json) {
  */
 
 function ungzip(encoded) {
-  decoded = decode(encoded);
+  decoded = decode(encoded)
   try {
-    return JSON.parse(zlib.unzipSync(decoded).toString());
+    return JSON.parse(zlib.unzipSync(decoded).toString())
   } catch (e) {
-    return encoded;
+    return encoded
   }
 }
 
@@ -259,7 +259,7 @@ function ungzip(encoded) {
  */
 
 function encode(string) {
-  return Buffer.from(string).toString("base64");
+  return Buffer.from(string).toString("base64")
 }
 
 /**
@@ -268,20 +268,20 @@ function encode(string) {
  */
 
 function decode(encoded) {
-  return Buffer.from(encoded, "base64");
+  return Buffer.from(encoded, "base64")
 }
 
 function isObject(obj) {
-  return typeof obj == "object";
+  return typeof obj == "object"
 }
 
 function sizeOf(string) {
-  return string.length;
+  return string.length
 }
 
 function jsonSize(data) {
-  return sizeOf(JSON.stringify(data));
+  return sizeOf(JSON.stringify(data))
 }
 
-exports.compress = compress;
-exports.decompress = decompress;
+exports.compress = compress
+exports.decompress = decompress

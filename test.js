@@ -1,4 +1,4 @@
-var zlib = require('zlib');
+var zlib = require('zlib')
 var kvm = require('./'),
     compress = kvm.compress,
     decompress = kvm.decompress
