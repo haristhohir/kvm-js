@@ -85,6 +85,8 @@ data = [
   }
 ];
 
+// original size =>  487 byte
+
 compressed = compress(data);
 console.log(compressed);
 
@@ -144,6 +146,7 @@ console.log(compressed);
     }
   ]
 }
+kvm size => 442 byte
  
 Extra compression using gzip result:
 
@@ -153,6 +156,8 @@ kf9W9cUfrKHqhabKASYEqwxyh0r6NqtuXfz+ZM6BMsUgwRXgk35noibxxZ+J6gUWBCYZIyYkPXrv
 WTC1Fd7pz2mr+KzBLUKxGUUW+4dH7nvtJhfBMfXQ/jdp32t+++S1HpXjUgUe9QAxljCDCXULJMQm
 UEkFByW1TKNUVg6RBsiB5kM0qRRARBxIimJDXemaOF8nffLUUp0txthTna5LYLFosmv5XGS/DiaB
 S/mrN6wf+PL6XvAEAAA=="
+gzip compressed size => 402 byte
+
 *
 */
 ```
