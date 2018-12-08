@@ -160,3 +160,11 @@ gzip compressed size => 402 byte
 *
 */
 ```
+
+## Author
+
+[Haris Thohir](https://harisuddin.com)
+
+## License
+
+This project is licensed under the MIT license. See the [LICENSE](LICENSE) file for more info.
