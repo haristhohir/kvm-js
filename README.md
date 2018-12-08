@@ -84,7 +84,6 @@ data = [
     ]
   }
 ];
-
 // original size =>  487 byte
 
 compressed = compress(data);
