@@ -78,39 +78,8 @@ console.log(compressed);
 /**
  * KVM structure result : 
 {
-  "k": [
-    "class",
-    "rider",
-    "name",
-    "age",
-    "bike_number",
-    "world_champion"
-  ],
-  "v": [
-    "motogp",
-    "Valentino Rossi",
-    39,
-    46,
-    7,
-    "Marc Márquez",
-    25,
-    93,
-    5,
-    "Jorge Lorenzo",
-    31,
-    99,
-    3,
-    "moto2",
-    "Francesco Bagnaia",
-    21,
-    63,
-    1,
-    "Franco Morbidelli",
-    24,
-    "Pol Espargaró",
-    27,
-    44
-  ],
+  "k": [ "class", "rider", "name", "age", "bike_number", "world_champion" ],
+  "v": [ "motogp", "Valentino Rossi", 39, 46, 7, "Marc Márquez", 25, 93, 5, "Jorge Lorenzo", 31, 99, 3, "moto2", "Francesco Bagnaia", 21, 63, 1, "Franco Morbidelli", 24, "Pol Espargaró", 27, 44 ],
   "m": [
     {
       "0": 0,
