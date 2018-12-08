@@ -2,6 +2,9 @@ var kvm = require('./'),
     compress = kvm.compress,
     decompress = kvm.decompress
 
+// kvm.debugMode(true)
+// kvm.disableGzip()
+
 data = [{
     class: "motogp",
     rider: [{
@@ -70,7 +73,6 @@ function sizeOf(string) {
     } catch {
         return 0
     }
-
 }
 
 function jsonSize(data) {

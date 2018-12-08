@@ -25,8 +25,14 @@ var zlib = require("zlib")
  *
  */
 
+var isDebugMode = false
+var isGzipDisabled = false
+
 function compress(data, force = false) {
   compressed = forceCompress(data)
+  if (isDebugMode) {
+    return data
+  }
   /**
    * if compressed size smaller than origin size
    * or force to compress then will return compressed JSON object
@@ -34,9 +40,19 @@ function compress(data, force = false) {
    * and adition compression using GZIP
    */
   if (jsonSize(compressed) < jsonSize(data) || force) {
-    return gzip(compressed)
+    if (isGzipDisabled) {
+      return compressed
+    } else {
+      return gzip(compressed)
+    }
+
   } else {
-    return gzip(data)
+    if (isGzipDisabled) {
+      return data
+    } else {
+      return gzip(data)
+    }
+
   }
 }
 
@@ -74,7 +90,12 @@ function forceCompress(data) {
  */
 
 function decompress(data) {
-  data = ungzip(data)
+  if (isDebugMode) {
+    return data
+  }
+  if (!isGzipDisabled) {
+    data = ungzip(data)
+  }
   let map = Object.keys(data)
   if (map[0] === "k" && map[1] === "v" && map[2] === "m") {
     return build(data["m"], data["k"], data["v"])
@@ -253,6 +274,14 @@ function ungzip(encoded) {
   }
 }
 
+function debugMode(dMode = true) {
+  isDebugMode = dMode
+}
+
+function disableGzip(dGzip = true) {
+  isGzipDisabled = dGzip
+}
+
 /**
  * @param {string} string
  * @returns {string} base64
@@ -285,3 +314,5 @@ function jsonSize(data) {
 
 exports.compress = compress
 exports.decompress = decompress
+exports.debugMode = debugMode
+exports.disableGzip = disableGzip

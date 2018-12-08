@@ -8,7 +8,8 @@ A JSON compression technique by splitting JSON object into Key, Value and Model.
 
 - Compress JSON into KVM model structure
 - Decompress KVM structure into origin JSON object
-- Extra compression using GZIP
+- Extra compression using GZIP (can be disabled)
+- Debug mode (turn off compression)
 
 ## Usage
 
@@ -18,6 +19,18 @@ Import kvm-json into your project
 var kvm = require("kvm-json"),
   compress = kvm.compress,
   decompress = kvm.decompress;
+```
+
+Debug mode:
+
+```js
+kvm.debugMode(); // or kvm.debugMode(true)
+```
+
+Disable GZIP, will return KVM JSON object:
+
+```js
+kvm.disableGzip(); // or kvm.disableGzip(true)
 ```
 
 Compression usage:
